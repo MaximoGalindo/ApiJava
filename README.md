@@ -22,18 +22,12 @@ Este proyecto consiste en una API robusta y escalable con una estructura de micr
     - Asegúrate de tener un servidor PostgreSQL en ejecución.
     - Configura las credenciales en `application.properties` para la conexión.
 
-3. **Compila y Ejecuta**:
-    ```bash
-    ./mvnw clean install
-    ./mvnw spring-boot:run
-    ```
-
-4. **Despliega con Docker**:
+3. **Despliega con Docker**:
     ```bash
     docker-compose up -d
     ```
 
-5. **¡Explora y Disfruta!**:
+4. **¡Explora y Disfruta!**:
     - Accede a la documentación de la API en [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
     - Experimenta con las rutas y funcionalidades proporcionadas.
 
