@@ -1,0 +1,31 @@
+version: '3'
+services:
+  apiexchange:
+    image: apiexchange:latest
+    container_name: contenedor
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbexchange
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dbexchange:5432/Exchange
+      SPRING_DATASOURCE_USERNAME: maxi
+      SPRING_DATASOURCE_PASSWORD: 1234
+    networks:
+      - database
+
+  dbexchange:
+    container_name: conte
+    image: postgres:latest
+    ports:
+      - "54433:5432"
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: maxi
+      POSTGRES_DB: Exchange
+    networks:
+      - database
+
+networks:
+  database:
+    driver: bridge

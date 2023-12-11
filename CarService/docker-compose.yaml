@@ -1,0 +1,62 @@
+version: '3'
+services:
+  apiexchange:
+    image: apiexchange:latest
+    container_name: apiexchangeCont
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbexchange
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dbexchange:5432/Exchange
+      SPRING_DATASOURCE_USERNAME: maxi
+      SPRING_DATASOURCE_PASSWORD: 1234
+    networks:
+      - database1
+      - backend
+
+  dbexchange:
+    container_name: dbexchangeCont
+    image: postgres:latest
+    ports:
+      - "54433:5432"
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: maxi
+      POSTGRES_DB: Exchange
+    networks:
+      - database1
+
+  apicars:
+    image: apicars:latest
+    container_name: apiCarsCont
+    ports:
+      - "8081:8081"
+    depends_on:
+      - dbCars
+      - apiexchange
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dbCars:5432/Cars
+      SPRING_DATASOURCE_USERNAME: maxi
+      SPRING_DATASOURCE_PASSWORD: 1234
+      exchange.rate.url: http://apiexchange:8080/ExRate/getExRateFrom
+    networks:
+      - database2
+      - backend
+
+  dbCars:
+    container_name: dbCarsCont
+    image: postgres:latest
+    ports:
+      - "54434:5432"
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: maxi
+      POSTGRES_DB: Cars
+    networks:
+      - database2
+
+networks:
+  database1:
+  database2:
+  backend:
