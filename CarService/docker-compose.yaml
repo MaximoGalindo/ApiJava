@@ -1,24 +1,8 @@
 version: '3'
 services:
-  apiexchange:
+  db-exchange:
     build: .
-    image: apiexchange:latest
-    container_name: apiexchange
-    ports:
-      - "8080:8080"
-    depends_on:
-      - dbexchange
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://dbexchange:5432/Exchange
-      SPRING_DATASOURCE_USERNAME: maxi
-      SPRING_DATASOURCE_PASSWORD: 1234
-    networks:
-      - database1
-      - backend
-
-  dbexchange:
-    build: .
-    container_name: dbexchange
+    container_name: db-exchange
     image: postgres:latest
     ports:
       - "54433:5432"
@@ -29,27 +13,27 @@ services:
     networks:
       - database1
 
-  apicars:
-    build: .
-    image: apicars:latest
-    container_name: apicars
+  api-exchange:
+    build:
+      context: C:\Users\Maxi\Desktop\SpringBootPracticeAPI\ExChangeService
+      dockerfile: Dockerfile
+    image: api-exchange:latest
+    container_name: api-exchange
     ports:
-      - "8081:8081"
+      - "8080:8080"
     depends_on:
-      - dbcars
-      - apiexchange
+      - db-exchange
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://dbcars:5432/Cars
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db-exchange:5432/Exchange
       SPRING_DATASOURCE_USERNAME: maxi
       SPRING_DATASOURCE_PASSWORD: 1234
-      exchange.rate.url: http://apiexchange:8080/ExRate/getExRateFrom
     networks:
-      - database2
+      - database1
       - backend
 
-  dbcars:
+  db-cars:
     build: .
-    container_name: dbcars
+    container_name: db-cars
     image: postgres:latest
     ports:
       - "54434:5432"
@@ -59,6 +43,26 @@ services:
       POSTGRES_DB: Cars
     networks:
       - database2
+
+  api-cars:
+    build: .
+    image: api-cars:latest
+    container_name: api-cars
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db-cars
+      - api-exchange
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db-cars:5432/Cars
+      SPRING_DATASOURCE_USERNAME: maxi
+      SPRING_DATASOURCE_PASSWORD: 1234
+      exchange.rate.url: http://api-exchange:8080/ExRate/getExRateFrom
+    networks:
+      - database2
+      - backend
+
+
 
 networks:
   database1:
