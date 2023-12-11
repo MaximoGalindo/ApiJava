@@ -3,13 +3,13 @@ services:
   apiexchange:
     build: .
     image: apiexchange:latest
-    container_name: apiexchangecont
+    container_name: apiexchange
     ports:
       - "8080:8080"
     depends_on:
       - dbexchange
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://dbexchangecont:5432/Exchange
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dbexchange:5432/Exchange
       SPRING_DATASOURCE_USERNAME: maxi
       SPRING_DATASOURCE_PASSWORD: 1234
     networks:
@@ -18,7 +18,7 @@ services:
 
   dbexchange:
     build: .
-    container_name: dbexchangecont
+    container_name: dbexchange
     image: postgres:latest
     ports:
       - "54433:5432"
@@ -32,24 +32,24 @@ services:
   apicars:
     build: .
     image: apicars:latest
-    container_name: apicarscont
+    container_name: apicars
     ports:
       - "8081:8081"
     depends_on:
       - dbCars
       - apiexchange
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://dbcarscont:5432/Cars
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dbcars:5432/Cars
       SPRING_DATASOURCE_USERNAME: maxi
       SPRING_DATASOURCE_PASSWORD: 1234
-      exchange.rate.url: http://apiexchangecont:8080/ExRate/getExRateFrom
+      exchange.rate.url: http://apiexchange:8080/ExRate/getExRateFrom
     networks:
       - database2
       - backend
 
-  dbCars:
+  dbcars:
     build: .
-    container_name: dbcarscont
+    container_name: dbcars
     image: postgres:latest
     ports:
       - "54434:5432"
