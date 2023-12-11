@@ -30,15 +30,3 @@ Este proyecto consiste en una API robusta y escalable con una estructura de micr
 4. **¡Explora y Disfruta!**:
     - Accede a la documentación de la API en [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
     - Experimenta con las rutas y funcionalidades proporcionadas.
-
-## Contribuciones
-
-¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar este proyecto, ¡adelante! Siéntete libre de crear problemas, enviar solicitudes de extracción y compartir tus pensamientos.
-
-## Licencia
-
-Este proyecto está bajo la Licencia [MIT](LICENSE) - Detalles [aquí](LICENSE).
-
----
-
-**¡Haz tu backend asombroso con Awesome Backend API! 🚀**
