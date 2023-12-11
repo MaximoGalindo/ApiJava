@@ -1,6 +1,7 @@
 version: '3'
 services:
   apiexchange:
+    build: .
     image: apiexchange:latest
     container_name: apiexchangeCont
     ports:
@@ -16,6 +17,7 @@ services:
       - backend
 
   dbexchange:
+    build: .
     container_name: dbexchangeCont
     image: postgres:latest
     ports:
@@ -28,6 +30,7 @@ services:
       - database1
 
   apicars:
+    build: .
     image: apicars:latest
     container_name: apiCarsCont
     ports:
@@ -45,6 +48,7 @@ services:
       - backend
 
   dbCars:
+    build: .
     container_name: dbCarsCont
     image: postgres:latest
     ports:
