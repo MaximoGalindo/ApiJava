@@ -15,7 +15,7 @@ services:
 
   api-exchange:
     build:
-      context: C:\Users\Maxi\Desktop\SpringBootPracticeAPI\ExChangeService
+      context: ../ExChangeService
       dockerfile: Dockerfile
     image: api-exchange:latest
     container_name: api-exchange
