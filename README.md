@@ -1,4 +1,4 @@
-# Awesome Backend API
+# SpringBootPracticeAPI
 
 Este proyecto consiste en una API robusta y escalable con una estructura de microservicios que te permitirá desplegar y gestionar tus recursos de manera eficiente.
 
