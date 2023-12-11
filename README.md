@@ -14,8 +14,8 @@ Este proyecto consiste en una API robusta y escalable con una estructura de micr
 
 1. **Clona el Repositorio**:
     ```bash
-    git clone https://github.com/tu_usuario/awesome-backend-api.git
-    cd awesome-backend-api
+    git clone https://github.com/MaximoGalindo/SpringBootPracticeAPI.git
+    cd SpringBootPracticeAPI
     ```
 
 2. **Configura la Base de Datos**:
